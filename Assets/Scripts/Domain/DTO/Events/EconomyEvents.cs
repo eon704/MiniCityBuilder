@@ -1,0 +1,4 @@
+namespace Domain.DTO.Events
+{
+
+}
