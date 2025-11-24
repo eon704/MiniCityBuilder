@@ -1,0 +1,17 @@
+{
+    "name": "Repositories",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6c5a457ed8824f1c8a693ea948f5c778",
+        "GUID:866df9e76bb2406ca293c7054d6f7552"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
