@@ -29,7 +29,7 @@ namespace Infrastructure.Installers
       builder.Register<ILogger>(container => Debug.unityLogger, Lifetime.Singleton);
       builder.Register<GridModel>(container => new GridModel(GridSizeX, GridSizeY), Lifetime.Singleton);
       builder.Register<Domain.Interfaces.IBuildingRepository, UnityBuildingRepository>(Lifetime.Singleton);
-      // TODO: Register IBuildingConfigRepository implementation when created
+      builder.Register<Domain.Interfaces.IBuildingConfigRepository, InMemoryBuildingConfigRepository>(Lifetime.Singleton);
       
       builder.Register<BuildingSelectionService>(Lifetime.Singleton);
       
@@ -61,14 +61,17 @@ namespace Infrastructure.Installers
       builder.RegisterEntryPoint<BuildingPresenter>(Lifetime.Scoped);
       builder.RegisterEntryPoint<InputPresenter>(Lifetime.Scoped);
       builder.Register<BuildingViewManager>(Lifetime.Singleton);
+      
+      var buildingViewManagerMono = Object.FindObjectOfType<BuildingViewManagerMono>();
+      builder.RegisterComponent(buildingViewManagerMono);
 
-      builder.Register<CameraController>(container =>
+      var camera = Camera.main ?? Object.FindObjectOfType<Camera>();
+      if (camera != null)
       {
-        var camera = Camera.main ?? Object.FindObjectOfType<Camera>();
-        var moveSub = container.Resolve<ISubscriber<CameraMoveCommand>>();
-        var zoomSub = container.Resolve<ISubscriber<CameraZoomCommand>>();
-        return new CameraController(camera, moveSub, zoomSub);
-      }, Lifetime.Singleton);
+        builder.RegisterInstance(camera);
+      }
+
+      builder.RegisterEntryPoint<CameraController>(Lifetime.Singleton);
     }
   }
 }

@@ -601,6 +601,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8582904630066250795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9e7e2c295946a99f8fea77df22497a, type: 3}
+  m_Script: {fileID: 11500000, guid: 78258fb403c4249a9a5e11fae4fadcf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Presentation::Presentation.Views.Buildings.MineView

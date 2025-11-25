@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &198708608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198708610}
+  - component: {fileID: 198708609}
+  m_Layer: 0
+  m_Name: BuildingViewManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &198708609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198708608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493e84a3968d4cfe974538eae86892c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Presentation::Presentation.BuildingViewManagerMono
+  _housePrefab: {fileID: 3158014239760865081, guid: 19c47036cc74d4e598f99ce43ffe961b, type: 3}
+  _farmPrefab: {fileID: 6226782600417229280, guid: 842dd8d00e03245dd9d8c7fc61f5d18c, type: 3}
+  _minePrefab: {fileID: 8582904630066250795, guid: dab8e8e29b50d47f0a2ddba19f37de4d, type: 3}
+--- !u!4 &198708610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198708608}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,3 +690,4 @@ SceneRoots:
   - {fileID: 3151413913985167955}
   - {fileID: 735148931}
   - {fileID: 1051873633}
+  - {fileID: 198708610}

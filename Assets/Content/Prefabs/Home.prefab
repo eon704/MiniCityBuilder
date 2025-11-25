@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158014239760865081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2e76144f2bf4c878b3fbc2edd0247e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 84099e4e614774682947de0059355270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Presentation::Presentation.Views.Buildings.HouseView
 --- !u!1 &5220267758333369790

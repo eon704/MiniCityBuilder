@@ -1,5 +1,8 @@
+using Domain;
+
 namespace Domain.Model
 {
+  [System.Serializable]
   public class BuildingLevel
   {
     public int Level;
@@ -15,9 +18,13 @@ namespace Domain.Model
       Description = description;
     }
 
+    // Parameterless constructor required for Unity serialization
     public BuildingLevel()
     {
-      throw new System.NotImplementedException();
+      Level = 1;
+      UpgradeCost = new Cost(0);
+      Income = new Income(0);
+      Description = string.Empty;
     }
   }
 }

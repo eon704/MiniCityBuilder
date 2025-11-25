@@ -1,17 +1,18 @@
 namespace Domain.Model
 {
-  public readonly struct BuildingTypeId : System.IEquatable<BuildingTypeId>
+  [System.Serializable]
+  public struct BuildingTypeId : System.IEquatable<BuildingTypeId>
   {
-    private readonly int _value;
+    public int Value;
 
     public BuildingTypeId(int value)
     {
-      _value = value;
+      Value = value;
     }
 
     public bool Equals(BuildingTypeId other)
     {
-      return _value == other._value;
+      return Value == other.Value;
     }
 
     public override bool Equals(object obj)
@@ -19,6 +20,6 @@ namespace Domain.Model
         return obj is BuildingTypeId other && Equals(other);
     }
 
-    public override int GetHashCode() => _value.GetHashCode();
+    public override int GetHashCode() => Value.GetHashCode();
   }
 }

@@ -17,10 +17,6 @@ namespace Presentation
     private readonly Dictionary<Guid, IBuildingView> _buildingViews = new();
     private readonly Dictionary<BuildingTypeId, GameObject> _buildingPrefabs = new();
     
-    [SerializeField] private GameObject _housePrefab;
-    [SerializeField] private GameObject _farmPrefab;
-    [SerializeField] private GameObject _minePrefab;
-    
     private readonly CompositeDisposable _disposables = new();
     private readonly ISubscriber<BuildingPlacedEvent> _placedSubscriber;
     private readonly ISubscriber<BuildingRemovedEvent> _removedSubscriber;
@@ -39,13 +35,6 @@ namespace Presentation
     
     public void Initialize()
     {
-      if (_housePrefab != null)
-        _buildingPrefabs[new BuildingTypeId(1)] = _housePrefab;
-      if (_farmPrefab != null)
-        _buildingPrefabs[new BuildingTypeId(2)] = _farmPrefab;
-      if (_minePrefab != null)
-        _buildingPrefabs[new BuildingTypeId(3)] = _minePrefab;
-
       _placedSubscriber.Subscribe(evt => SpawnBuilding(evt.BuildingId, evt.TypeId, evt.Position, 0f))
         .AddTo(_disposables);
       
@@ -54,6 +43,19 @@ namespace Presentation
       
       _rotatedSubscriber.Subscribe(evt => UpdateBuildingRotation(evt.BuildingId, evt.NewRotation))
         .AddTo(_disposables);
+    }
+    
+    /// <summary>
+    /// Sets the building prefabs. Called by BuildingViewManagerMono after injection.
+    /// </summary>
+    public void SetPrefabs(GameObject housePrefab, GameObject farmPrefab, GameObject minePrefab)
+    {
+      if (housePrefab != null)
+        _buildingPrefabs[new BuildingTypeId(1)] = housePrefab;
+      if (farmPrefab != null)
+        _buildingPrefabs[new BuildingTypeId(2)] = farmPrefab;
+      if (minePrefab != null)
+        _buildingPrefabs[new BuildingTypeId(3)] = minePrefab;
     }
     
     public void Dispose()

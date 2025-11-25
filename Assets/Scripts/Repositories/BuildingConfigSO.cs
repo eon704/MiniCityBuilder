@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Repositories
 {
   [CreateAssetMenu(fileName = "BuildingConfig", menuName = "Game/Building Config")]
+  [System.Serializable]
   public class BuildingConfigSO : ScriptableObject
   {
     public BuildingTypeId Id;

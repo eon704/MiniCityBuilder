@@ -1,5 +1,6 @@
 namespace Domain
 {
+  [System.Serializable]
   public struct Cost
   {
     public int Gold;

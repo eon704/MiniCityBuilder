@@ -1,64 +1,46 @@
 using System;
-using Domain.DTO.Commands;
 using Domain.DTO.Events;
 using MessagePipe;
 using R3;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
 namespace Presentation
 {
+  /// <summary>
+  /// Handles presentation-level responses to input commands.
+  /// Currently minimal - most input is handled directly by InputHandler publishing commands.
+  /// This can be extended for UI feedback, visual effects, etc.
+  /// </summary>
   public class InputPresenter : IInitializable, IDisposable
   {
-    private readonly IPublisher<SelectBuildingTypeCommand> _selectBuildingTypePublisher;
-    private readonly IPublisher<RotateBuildingCommand> _rotateBuildingPublisher;
-    private readonly IPublisher<RemoveBuildingCommand> _removeBuildingPublisher;
-    private readonly BuildingPresenter _buildingPresenter;
-    private readonly CameraController _cameraController;
+    private readonly ISubscriber<CameraMoveCommand> _cameraMoveSubscriber;
+    private readonly ISubscriber<CameraZoomCommand> _cameraZoomSubscriber;
+    private readonly ILogger _logger;
+    
     private readonly CompositeDisposable _disposables = new();
     
     [Inject]
     public InputPresenter(
-      IPublisher<SelectBuildingTypeCommand> selectBuildingTypePublisher,
-      IPublisher<RotateBuildingCommand> rotateBuildingPublisher,
-      IPublisher<RemoveBuildingCommand> removeBuildingPublisher,
-      BuildingPresenter buildingPresenter,
-      CameraController cameraController)
+      ISubscriber<CameraMoveCommand> cameraMoveSubscriber,
+      ISubscriber<CameraZoomCommand> cameraZoomSubscriber,
+      ILogger logger)
     {
-      _selectBuildingTypePublisher = selectBuildingTypePublisher;
-      _rotateBuildingPublisher = rotateBuildingPublisher;
-      _removeBuildingPublisher = removeBuildingPublisher;
-      _buildingPresenter = buildingPresenter;
-      _cameraController = cameraController;
+      _cameraMoveSubscriber = cameraMoveSubscriber;
+      _cameraZoomSubscriber = cameraZoomSubscriber;
+      _logger = logger;
     }
     
     public void Initialize()
     {
-    }
-    
-    public void HandleSelectBuildingType(SelectBuildingTypeCommand command)
-    {
-      _selectBuildingTypePublisher.Publish(command);
-    }
-    
-    public void HandleRotateBuilding(RotateBuildingCommand command)
-    {
-      _buildingPresenter.RotateSelectedBuilding();
-    }
-    
-    public void HandleDeleteBuilding(RemoveBuildingCommand command)
-    {
-      _buildingPresenter.DeleteSelectedBuilding();
-    }
-    
-    public void HandleCameraMove(CameraMoveCommand command)
-    {
-      _cameraController.HandleCameraMove(command);
-    }
-    
-    public void HandleCameraZoom(CameraZoomCommand command)
-    {
-      _cameraController.HandleCameraZoom(command);
+      _cameraMoveSubscriber.Subscribe(cmd => 
+      {
+      }).AddTo(_disposables);
+      
+      _cameraZoomSubscriber.Subscribe(cmd => 
+      {
+      }).AddTo(_disposables);
     }
     
     public void Dispose()
