@@ -1,4 +1,4 @@
-namespace Domain
+namespace Domain.Model
 {
   public class BuildingLevel
   {
@@ -13,6 +13,11 @@ namespace Domain
       UpgradeCost = upgradeCost;
       Income = income;
       Description = description;
+    }
+
+    public BuildingLevel()
+    {
+      throw new System.NotImplementedException();
     }
   }
 }
