@@ -21,16 +21,21 @@ namespace Presentation
     private readonly ISubscriber<BuildingPlacedEvent> _placedSubscriber;
     private readonly ISubscriber<BuildingRemovedEvent> _removedSubscriber;
     private readonly ISubscriber<BuildingRotatedEvent> _rotatedSubscriber;
+    private readonly GridModel _gridModel;
+    
+    private const float CellSize = 1f; // Must match GridView._cellSize
     
     [Inject]
     public BuildingViewManager(
       ISubscriber<BuildingPlacedEvent> placedSubscriber,
       ISubscriber<BuildingRemovedEvent> removedSubscriber,
-      ISubscriber<BuildingRotatedEvent> rotatedSubscriber)
+      ISubscriber<BuildingRotatedEvent> rotatedSubscriber,
+      GridModel gridModel)
     {
       _placedSubscriber = placedSubscriber;
       _removedSubscriber = removedSubscriber;
       _rotatedSubscriber = rotatedSubscriber;
+      _gridModel = gridModel;
     }
     
     public void Initialize()
@@ -45,17 +50,20 @@ namespace Presentation
         .AddTo(_disposables);
     }
     
-    /// <summary>
-    /// Sets the building prefabs. Called by BuildingViewManagerMono after injection.
-    /// </summary>
     public void SetPrefabs(GameObject housePrefab, GameObject farmPrefab, GameObject minePrefab)
     {
       if (housePrefab != null)
+      {
         _buildingPrefabs[new BuildingTypeId(1)] = housePrefab;
+      }
       if (farmPrefab != null)
+      {
         _buildingPrefabs[new BuildingTypeId(2)] = farmPrefab;
+      }
       if (minePrefab != null)
+      {
         _buildingPrefabs[new BuildingTypeId(3)] = minePrefab;
+      }
     }
     
     public void Dispose()
@@ -76,19 +84,11 @@ namespace Presentation
     {
       if (!_buildingPrefabs.TryGetValue(typeId, out var prefab))
       {
-        Debug.LogError($"BuildingViewManager: No prefab found for type {typeId}");
         return;
       }
       
       var instance = UnityEngine.Object.Instantiate(prefab);
       var buildingView = instance.GetComponent<IBuildingView>();
-      
-      if (buildingView == null)
-      {
-        Debug.LogError($"BuildingViewManager: Prefab {prefab.name} doesn't have IBuildingView component");
-        UnityEngine.Object.Destroy(instance);
-        return;
-      }
       
       buildingView.SetPosition(GridToWorldPosition(position));
       buildingView.SetRotation(rotation);
@@ -118,7 +118,13 @@ namespace Presentation
     
     private Vector3 GridToWorldPosition(GridPos gridPos)
     {
-      return new Vector3(gridPos.X, 0, gridPos.Y);
+      float offsetX = (_gridModel.SizeX - 1) * CellSize * 0.5f;
+      float offsetY = (_gridModel.SizeY - 1) * CellSize * 0.5f;
+      
+      float worldX = gridPos.X * CellSize - offsetX;
+      float worldZ = gridPos.Y * CellSize - offsetY;
+      
+      return new Vector3(worldX, 0, worldZ);
     }
   }
 }

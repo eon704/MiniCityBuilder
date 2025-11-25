@@ -20,6 +20,8 @@ namespace Presentation
     
     public void Initialize()
     {
+      if (_manager == null) return;
+      
       _manager.SetPrefabs(_housePrefab, _farmPrefab, _minePrefab);
     }
   }

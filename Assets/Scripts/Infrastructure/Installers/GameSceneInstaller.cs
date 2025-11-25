@@ -60,10 +60,17 @@ namespace Infrastructure.Installers
       builder.RegisterEntryPoint<GridPresenter>(Lifetime.Scoped);
       builder.RegisterEntryPoint<BuildingPresenter>(Lifetime.Scoped);
       builder.RegisterEntryPoint<InputPresenter>(Lifetime.Scoped);
+      
       builder.Register<BuildingViewManager>(Lifetime.Singleton);
       
       var buildingViewManagerMono = Object.FindObjectOfType<BuildingViewManagerMono>();
       builder.RegisterComponent(buildingViewManagerMono);
+      builder.RegisterBuildCallback(container =>
+      {
+        var manager = container.Resolve<BuildingViewManager>();
+        manager.Initialize();
+        buildingViewManagerMono.Initialize();
+      });
 
       var camera = Camera.main ?? Object.FindObjectOfType<Camera>();
       if (camera != null)

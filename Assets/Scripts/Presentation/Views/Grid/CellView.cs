@@ -7,8 +7,9 @@ namespace Presentation.Views.Grid
   public class CellView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
   {
     [SerializeField] private MeshRenderer _meshRenderer;
-    [SerializeField] private Color _normalColor = Color.green;
+    [SerializeField] private Color _normalColor = Color.darkGreen;
     [SerializeField] private Color _highlightColor = Color.yellow;
+    [SerializeField] private Color _occupiedColor = Color.darkRed;
     
     private GridView _parentGridView;
     private GridPos _gridPosition;

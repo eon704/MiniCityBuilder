@@ -67,7 +67,6 @@ namespace Presentation
       if (selectedType.HasValue)
       {
         _placeBuildingPublisher.Publish(new PlaceBuildingCommand(selectedType.Value, pos));
-        _logger.Log($"Placing building type {selectedType.Value.Value} at ({pos.X}, {pos.Y})");
       }
       else
       {

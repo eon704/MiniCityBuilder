@@ -8,39 +8,50 @@ namespace Presentation.Views.Buildings
 {
   public class MineView : MonoBehaviour, IBuildingView
   {
+    private readonly Subject<Unit> _onUpgradeClicked = new();
+    private readonly Subject<Unit> _onDeleteClicked = new();
+
+    private void OnDestroy()
+    {
+      _onUpgradeClicked?.Dispose();
+      _onDeleteClicked?.Dispose();
+    }
+
     public UniTask ShowAsync()
     {
-      throw new NotImplementedException();
+      gameObject.SetActive(true);
+      return UniTask.CompletedTask;
     }
 
     public UniTask HideAsync()
     {
-      throw new NotImplementedException();
+      gameObject.SetActive(false);
+      return UniTask.CompletedTask;
     }
 
     public void SetPosition(Vector3 worldPosition)
     {
-      throw new NotImplementedException();
+      transform.position = worldPosition;
     }
 
     public void SetVisualLevel(int level)
     {
-      throw new NotImplementedException();
+      // TODO: Update visual appearance based on level
     }
 
     public void SetRotation(float angle)
     {
-      throw new NotImplementedException();
+      transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
-    public IObservable<Unit> OnUpgradeClickedAsObservable()
+    public Observable<Unit> OnUpgradeClickedAsObservable()
     {
-      throw new NotImplementedException();
+      return _onUpgradeClicked;
     }
 
-    public IObservable<Unit> OnDeleteClickedAsObservable()
+    public Observable<Unit> OnDeleteClickedAsObservable()
     {
-      throw new NotImplementedException();
+      return _onDeleteClicked;
     }
   }
 }

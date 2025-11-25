@@ -13,8 +13,8 @@ namespace Presentation.Views.Interfaces
     void SetVisualLevel(int level);
     void SetRotation(float angle);
     // Use R3 Observable for UI events
-    IObservable<Unit> OnUpgradeClickedAsObservable(); 
-    IObservable<Unit> OnDeleteClickedAsObservable();
+    Observable<Unit> OnUpgradeClickedAsObservable(); 
+    Observable<Unit> OnDeleteClickedAsObservable();
   }
 }
 
