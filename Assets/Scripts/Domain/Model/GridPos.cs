@@ -17,11 +17,17 @@ namespace Domain
     public static bool operator !=(GridPos a, GridPos b) => !(a == b);
     public override bool Equals(object obj)
     {
-      throw new NotImplementedException();
+      return obj is GridPos other && Equals(other);
     }
+    
+    public bool Equals(GridPos other)
+    {
+      return X == other.X && Y == other.Y;
+    }
+    
     public override int GetHashCode()
     {
-      throw new NotImplementedException();
+      return HashCode.Combine(X, Y);
     }
   }
 }

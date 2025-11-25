@@ -14,8 +14,8 @@ namespace Presentation
     private readonly ISubscriber<CameraMoveCommand> _cameraMoveSubscriber;
     private readonly ISubscriber<CameraZoomCommand> _cameraZoomSubscriber;
 
-    private float _moveSpeed = 10f;
-    private float _zoomSpeed = 5f;
+    private float _moveSpeed = 5f;
+    private float _zoomSpeed = 2f;
     private float _minZoom = 5f;
     private float _maxZoom = 30f;
     
@@ -45,8 +45,17 @@ namespace Presentation
     {
       if (_camera == null) return;
       
-      Vector3 moveDirection = new Vector3(command.Delta.x, 0, command.Delta.y);
-      _camera.transform.position += moveDirection * _moveSpeed;
+      Vector3 right = _camera.transform.right;
+      Vector3 forward = _camera.transform.forward;
+      
+      right.y = 0f;
+      forward.y = 0f;
+      
+      right.Normalize();
+      forward.Normalize();
+      
+      Vector3 moveDirection = (right * command.Delta.x) + (forward * command.Delta.y);
+      _camera.transform.position += moveDirection * _moveSpeed * Time.deltaTime;
     }
     
     public void HandleCameraZoom(CameraZoomCommand command)

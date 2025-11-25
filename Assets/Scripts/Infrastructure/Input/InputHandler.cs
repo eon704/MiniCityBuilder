@@ -90,7 +90,7 @@ namespace Infrastructure.Input
           return move;
         })
         .Where(move => move != Vector2.zero)
-        .Subscribe(move => _cameraMovePublisher.Publish(new CameraMoveCommand(move * 10f * Time.deltaTime)))
+        .Subscribe(move => _cameraMovePublisher.Publish(new CameraMoveCommand(move * Time.deltaTime)))
         .AddTo(_disposables);
     }
     
@@ -103,7 +103,7 @@ namespace Infrastructure.Input
         .Select(_ =>
         {
           Vector2 currentPos = _mouse.position.ReadValue();
-          Vector2 delta = (currentPos - _lastMousePosition) * 0.01f;
+          Vector2 delta = (_lastMousePosition - currentPos) * 0.005f;
           _lastMousePosition = currentPos;
           return delta;
         })
@@ -117,7 +117,7 @@ namespace Infrastructure.Input
       Observable.EveryUpdate()
         .Select(_ => _mouse.scroll.ReadValue().y)
         .Where(scroll => Mathf.Abs(scroll) > 0.01f)
-        .Subscribe(scroll => _cameraZoomPublisher.Publish(new CameraZoomCommand(scroll * 0.1f)))
+        .Subscribe(scroll => _cameraZoomPublisher.Publish(new CameraZoomCommand(scroll * 0.05f)))
         .AddTo(_disposables);
     }
     
