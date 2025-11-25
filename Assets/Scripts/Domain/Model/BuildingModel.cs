@@ -4,7 +4,7 @@ using R3;
 
 namespace Domain
 {
-  public class Building
+  public class BuildingModel
   {
     public Guid Id { get; }
     public BuildingConfig Config { get; }
@@ -17,7 +17,7 @@ namespace Domain
     private readonly ReactiveProperty<GridPos> _position = new();
     private readonly ReactiveProperty<float> _rotationAngle = new();
 
-    public Building(BuildingConfig config, GridPos position, float rotationAngle)
+    public BuildingModel(BuildingConfig config, GridPos position, float rotationAngle)
     {
       Id = Guid.NewGuid();
       Config = config;

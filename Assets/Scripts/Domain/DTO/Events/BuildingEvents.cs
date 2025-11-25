@@ -2,9 +2,9 @@ using System;
 
 namespace Domain.DTO.Events
 {
-  public record BuildingPlacedEvent(Building Building)
+  public record BuildingPlacedEvent(BuildingModel BuildingModel)
   {
-    public Building Building { get; } = Building;
+    public BuildingModel BuildingModel { get; } = BuildingModel;
   };
   
   public record BuildingRemovedEvent(Guid BuildingId)
@@ -12,8 +12,8 @@ namespace Domain.DTO.Events
     public Guid BuildingId { get; } = BuildingId;
   };
   
-  public record BuildingUpgradedEvent(Building Building)
+  public record BuildingUpgradedEvent(BuildingModel BuildingModel)
   {
-    public Building Building { get; } = Building;
+    public BuildingModel BuildingModel { get; } = BuildingModel;
   };
 }

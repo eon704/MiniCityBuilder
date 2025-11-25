@@ -5,10 +5,10 @@ namespace Domain.Interfaces
 {
   public interface IBuildingRepository
   {
-    IReadOnlyList<Building> GetAll();
-    Building Get(Guid id);
-    void Add(Building building);
+    IReadOnlyList<BuildingModel> GetAll();
+    BuildingModel Get(Guid id);
+    void Add(BuildingModel buildingModel);
     void Remove(Guid id);
-    void Update(Building building);
+    void Update(BuildingModel buildingModel);
   }
 }

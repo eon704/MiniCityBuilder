@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4240994227184286349}
   - component: {fileID: 2334892364570719579}
   - component: {fileID: 3994945799671428983}
-  - component: {fileID: 1808872495117371851}
+  - component: {fileID: 8628982702399822270}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.005, z: 0}
-  m_LocalScale: {x: 0.99, y: 0.01, z: 0.99}
+  m_LocalScale: {x: 0.95, y: 0.01, z: 0.95}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,7 +112,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1808872495117371851
+--- !u!114 &8628982702399822270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8778526982837615501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504157d696064ee38864ed25bd5f1632, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fc937cd5af424da5abdba635f47986c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Presentation::Presentation.Views.Grid.CellView

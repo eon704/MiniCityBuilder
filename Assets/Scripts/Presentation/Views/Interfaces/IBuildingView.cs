@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using R3;
 using UnityEngine;
 
-namespace Presentation.Views.Buildings
+namespace Presentation.Views.Interfaces
 {
   public interface IBuildingView
   {
@@ -17,3 +17,4 @@ namespace Presentation.Views.Buildings
     IObservable<Unit> OnDeleteClickedAsObservable();
   }
 }
+

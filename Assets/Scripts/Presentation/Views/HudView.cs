@@ -1,7 +1,8 @@
-namespace Presentation
+namespace Presentation.Views
 {
   public class HudView
   {
     
   }
 }
+
