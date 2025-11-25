@@ -24,4 +24,14 @@ namespace Domain.DTO.Commands
   {
     public Guid BuildingId { get; } = BuildingId;
   }
+  
+  public record RotateBuildingCommand(Guid BuildingId)
+  {
+    public Guid BuildingId { get; } = BuildingId;
+  }
+  
+  public record SelectBuildingTypeCommand(BuildingTypeId TypeId)
+  {
+    public BuildingTypeId TypeId { get; } = TypeId;
+  }
 }

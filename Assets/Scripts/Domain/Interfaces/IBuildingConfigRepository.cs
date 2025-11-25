@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Domain.Model;
 
-namespace Repositories
+namespace Domain.Interfaces
 {
   public interface IBuildingConfigRepository
   {
