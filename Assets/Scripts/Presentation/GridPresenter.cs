@@ -24,6 +24,14 @@ namespace Presentation
       _gridView.OnCellClickedAsObservable()
         .Subscribe(HandleCellClicked)
         .AddTo(_disposables);
+      
+      _gridView.OnCellPointerEnterAsObservable()
+        .Subscribe(HandleCellPointerEnter)
+        .AddTo(_disposables);
+      
+      _gridView.OnCellPointerExitAsObservable()
+        .Subscribe(HandleCellPointerExit)
+        .AddTo(_disposables);
     }
 
     public void Dispose()
@@ -47,6 +55,18 @@ namespace Presentation
       {
         _logger.Log($"Cell is free.");
       }
+    }
+    
+    private void HandleCellPointerEnter(GridPos pos)
+    {
+      if (!_gridModel.IsInBounds(pos))
+        return;
+    }
+    
+    private void HandleCellPointerExit(GridPos pos)
+    {
+      if (!_gridModel.IsInBounds(pos))
+        return;
     }
   }
 }
